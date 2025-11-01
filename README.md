@@ -40,15 +40,6 @@ trabajo_grupal/
 
 ---
 
-## 🚀 Cómo Usar
-
-### Clonar el Repositorio
-
-```bash
-git clone https://github.com/afhex/trabajo_grupal.git
-cd trabajo_grupal
-```
-
 ### Cambiar de Rama
 
 Para trabajar en nuevas funcionalidades:
