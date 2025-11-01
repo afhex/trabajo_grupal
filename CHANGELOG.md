@@ -6,6 +6,15 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto se adhiere a [Semantic Versioning](https://semver.org/es/).
 
 ---
+## [Unreleased]
+
+### 🐛 Corregido
+- **Cart Functionality**: Agregar `js/script.js` a `pages/cart.html` para inicializar `ShoppingCart` antes que `CartManager`
+  - Permite actualización correcta del contador en la navegación
+  - Habilita listeners del carrito en `pages/cart.html`
+  - Previene duplicación de instancias al verificar existencia de elementos
+
+---
 
 ## [1.0.0] - 2025-11-01
 

@@ -103,11 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const scriptPath = document.currentScript.src;
     const isInJsFolder = scriptPath.includes('/js/');
     const cssPath = isInJsFolder ? '../css/cart-styles.css' : 'css/cart-styles.css';
-    const scriptPath2 = isInJsFolder ? '../js/cart-script.js' : 'js/cart-script.js';
 
-    // Cargar estilos del carrito y script si no están incluidos
+    // Cargar estilos del carrito si no están incluidos
     const cartStyleLink = document.querySelector('link[href*="cart-styles.css"]');
-    const cartScript = document.querySelector('script[src*="cart-script.js"]');
     
     if (!cartStyleLink) {
         const link = document.createElement('link');
@@ -116,11 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(link);
     }
     
-    if (!cartScript) {
-        const script = document.createElement('script');
-        script.src = scriptPath2;
-        document.body.appendChild(script);
-    }
+    // No inyectar cart-script.js - CartManagerOnPages ya está definido en este archivo
+    // cart-script.js solo se usa en pages/cart.html que lo carga explícitamente
 
     // Crear carrito si no existe
     createCartUI();
@@ -227,9 +222,11 @@ function createCartUI() {
     }
 
     // Inicializar CartManager
-    if (!window.cartManager) {
-        window.cartManager = new CartManagerOnPages();
-    }
+    if (!window.cartManager) {        try {
+            window.cartManager = new CartManagerOnPages();        } catch (e) {
+            console.error('[ERROR] Failed to create CartManagerOnPages:', e);
+        }
+    } else {    }
 }
 
 // ============================================
@@ -248,6 +245,13 @@ class CartManagerOnPages {
         this.totalValue = document.getElementById('totalValue');
         this.checkoutBtn = document.getElementById('checkoutBtn');
         this.continueShoppingBtn = document.getElementById('continueShoppingBtn');
+        this.cartCountElement = document.querySelector('.cart-count');
+
+        // Validar que los elementos críticos existan
+        if (!this.cartSidebar || !this.cartOverlay || !this.cartItemsContainer) {
+            console.error('[CartManagerOnPages] Missing required DOM elements');
+            return;
+        }
 
         this.initializeEventListeners();
         this.renderCart();
@@ -261,7 +265,18 @@ class CartManagerOnPages {
 
     saveCart() {
         localStorage.setItem('sweetverse_cart', JSON.stringify(this.cart));
+        this.updateCartCount();
         window.dispatchEvent(new Event('cartUpdated'));
+    }
+
+    updateCartCount() {
+        let total = 0;
+        for (let product in this.cart) {
+            total += this.cart[product].quantity;
+        }
+        if (this.cartCountElement) {
+            this.cartCountElement.textContent = total;
+        }
     }
 
     initializeEventListeners() {
@@ -463,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.querySelector('.cart-icon');
     if (cartIcon) {
         cartIcon.addEventListener('click', () => {
-            if (window.cartManager) {
+            if (window.cartManager && typeof window.cartManager.openCart === 'function') {
                 window.cartManager.openCart();
             }
         });
