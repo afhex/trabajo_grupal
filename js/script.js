@@ -99,6 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Detectar la ruta del script actual
+    const scriptPath = document.currentScript.src;
+    const isInJsFolder = scriptPath.includes('/js/');
+    const cssPath = isInJsFolder ? '../css/cart-styles.css' : 'css/cart-styles.css';
+    const scriptPath2 = isInJsFolder ? '../js/cart-script.js' : 'js/cart-script.js';
+
     // Cargar estilos del carrito y script si no están incluidos
     const cartStyleLink = document.querySelector('link[href*="cart-styles.css"]');
     const cartScript = document.querySelector('script[src*="cart-script.js"]');
@@ -106,13 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!cartStyleLink) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = document.location.pathname.includes('/pages/') ? '../css/cart-styles.css' : 'css/cart-styles.css';
+        link.href = cssPath;
         document.head.appendChild(link);
     }
     
     if (!cartScript) {
         const script = document.createElement('script');
-        script.src = document.location.pathname.includes('/pages/') ? '../js/cart-script.js' : 'js/cart-script.js';
+        script.src = scriptPath2;
         document.body.appendChild(script);
     }
 
@@ -207,11 +213,16 @@ function createCartUI() {
     `;
     document.body.appendChild(sidebar);
 
+    // Detectar la ruta del script actual para cargar estilos
+    const scriptPath3 = document.currentScript ? document.currentScript.src : '';
+    const isInJsFolder2 = scriptPath3.includes('/js/');
+    const cssPath2 = isInJsFolder2 ? '../css/cart-styles.css' : 'css/cart-styles.css';
+
     // Cargar estilos del carrito si no están incluidos
     if (!document.querySelector('link[href*="cart-styles.css"]')) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = document.location.pathname.includes('/pages/') ? '../css/cart-styles.css' : 'css/cart-styles.css';
+        link.href = cssPath2;
         document.head.appendChild(link);
     }
 
