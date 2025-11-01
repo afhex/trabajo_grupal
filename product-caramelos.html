@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caramelos Clásicos - SweetVerse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <h1>SweetVerse</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="products.html" class="nav-link">Productos</a></li>
+                <li><a href="index.html#about" class="nav-link">Nosotros</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="cart-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Hero Section -->
+    <section class="product-detail-hero">
+        <div class="product-detail-container">
+            <div class="product-detail-image">
+                <div class="product-detail-icon">🍬</div>
+            </div>
+            <div class="product-detail-content">
+                <h1 class="product-detail-title">Caramelos Clásicos</h1>
+                <p class="product-detail-subtitle">Los favoritos de siempre</p>
+                <div class="product-detail-rating">⭐⭐⭐⭐⭐ (128 reseñas)</div>
+                <p class="product-detail-description">
+                    Nuestros caramelos clásicos son el resultado de años de perfección en el arte de la confitería. Hechos con ingredientes de la más alta calidad, cada caramelo es una explosión de sabor tradicional que te transportará a momentos nostálgicos y memorables.
+                </p>
+                <div class="product-detail-specs">
+                    <div class="spec">
+                        <strong>Contenido:</strong> 200g
+                    </div>
+                    <div class="spec">
+                        <strong>Sabores:</strong> Fresa, Limón, Naranja, Frambuesa
+                    </div>
+                    <div class="spec">
+                        <strong>Ingredientes:</strong> Azúcar, glucosa, mantequilla, extractos naturales
+                    </div>
+                </div>
+                <div class="product-detail-price">$2.99</div>
+                <div class="product-detail-quantity">
+                    <button class="qty-btn" id="decrease">−</button>
+                    <input type="number" id="quantity" value="1" min="1">
+                    <button class="qty-btn" id="increase">+</button>
+                </div>
+                <button class="cta-button" id="add-to-cart">Añadir al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Info -->
+    <section class="product-info">
+        <div class="info-container">
+            <div class="info-card">
+                <div class="info-icon">🎁</div>
+                <h3>Empaque Premium</h3>
+                <p>Empaques elegantes y delicados perfectos para regalar</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">✨</div>
+                <h3>Calidad Garantizada</h3>
+                <p>Seleccionados cuidadosamente para tu satisfacción</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">🚀</div>
+                <h3>Envío Rápido</h3>
+                <p>Recibe tu pedido en 24-48 horas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <h2 class="section-title">Productos Relacionados</h2>
+        <div class="products-grid">
+            <a href="product-chupetines.html" class="product-card product-link">
+                <div class="product-image">🍭</div>
+                <h3 class="product-name">Chupetines Premium</h3>
+                <p class="product-description">Sabores exóticos y únicos</p>
+                <div class="product-price">$3.99</div>
+                <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
+            </a>
+
+            <a href="product-chocolates.html" class="product-card product-link">
+                <div class="product-image">🍫</div>
+                <h3 class="product-name">Chocolates Gourmet</h3>
+                <p class="product-description">Chocolate belga de calidad</p>
+                <div class="product-price">$5.99</div>
+                <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
+            </a>
+
+            <a href="product-donuts.html" class="product-card product-link">
+                <div class="product-image">🍩</div>
+                <h3 class="product-name">Donuts Artesanales</h3>
+                <p class="product-description">Receta tradicional mejorada</p>
+                <div class="product-price">$4.49</div>
+                <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SweetVerse. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Twitter</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const decreaseBtn = document.getElementById('decrease');
+        const increaseBtn = document.getElementById('increase');
+        const quantityInput = document.getElementById('quantity');
+        const addToCartBtn = document.getElementById('add-to-cart');
+
+        decreaseBtn.addEventListener('click', () => {
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+        });
+
+        addToCartBtn.addEventListener('click', () => {
+            const quantity = parseInt(quantityInput.value);
+            const cartCount = parseInt(document.querySelector('.cart-count').textContent);
+            document.querySelector('.cart-count').textContent = cartCount + quantity;
+            showNotification(`¡${quantity} Caramelos Clásicos añadidos al carrito! 🎉`);
+            quantityInput.value = 1;
+        });
+    </script>
+</body>
+</html>
