@@ -100,19 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Cargar estilos del carrito y script si no están incluidos
-    const cartStyleLink = document.querySelector('link[href="cart-styles.css"]');
-    const cartScript = document.querySelector('script[src="cart-script.js"]');
+    const cartStyleLink = document.querySelector('link[href*="cart-styles.css"]');
+    const cartScript = document.querySelector('script[src*="cart-script.js"]');
     
     if (!cartStyleLink) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'cart-styles.css';
+        link.href = document.location.pathname.includes('/pages/') ? '../css/cart-styles.css' : 'css/cart-styles.css';
         document.head.appendChild(link);
     }
     
     if (!cartScript) {
         const script = document.createElement('script');
-        script.src = 'cart-script.js';
+        script.src = document.location.pathname.includes('/pages/') ? '../js/cart-script.js' : 'js/cart-script.js';
         document.body.appendChild(script);
     }
 
@@ -208,10 +208,10 @@ function createCartUI() {
     document.body.appendChild(sidebar);
 
     // Cargar estilos del carrito si no están incluidos
-    if (!document.querySelector('link[href="cart-styles.css"]')) {
+    if (!document.querySelector('link[href*="cart-styles.css"]')) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'cart-styles.css';
+        link.href = document.location.pathname.includes('/pages/') ? '../css/cart-styles.css' : 'css/cart-styles.css';
         document.head.appendChild(link);
     }
 

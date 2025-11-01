@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocolates Gourmet - SweetVerse</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Caramelos Clásicos - SweetVerse</title>
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
     <!-- Fondo animado -->
@@ -17,10 +17,10 @@
                 <h1>SweetVerse</h1>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Inicio</a></li>
-                <li><a href="products.html" class="nav-link">Productos</a></li>
-                <li><a href="index.html#about" class="nav-link">Nosotros</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contacto</a></li>
+                <li><a href="../../index.html" class="nav-link">Inicio</a></li>
+                <li><a href="../products.html" class="nav-link">Productos</a></li>
+                <li><a href="../../index.html#about" class="nav-link">Nosotros</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contacto</a></li>
             </ul>
             <div class="cart-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -37,27 +37,27 @@
     <section class="product-detail-hero">
         <div class="product-detail-container">
             <div class="product-detail-image">
-                <div class="product-detail-icon">🍫</div>
+                <div class="product-detail-icon">🍬</div>
             </div>
             <div class="product-detail-content">
-                <h1 class="product-detail-title">Chocolates Gourmet</h1>
-                <p class="product-detail-subtitle">Chocolate belga de calidad</p>
-                <div class="product-detail-rating">⭐⭐⭐⭐⭐ (412 reseñas)</div>
+                <h1 class="product-detail-title">Caramelos Clásicos</h1>
+                <p class="product-detail-subtitle">Los favoritos de siempre</p>
+                <div class="product-detail-rating">⭐⭐⭐⭐⭐ (128 reseñas)</div>
                 <p class="product-detail-description">
-                    Nuestros chocolates gourmet son elaborados con chocolate belga premium importado directamente desde Bruselas. Cada pieza es una obra maestra de confitería, con rellenos creativos y sabores que harán que tu experiencia sea inolvidable.
+                    Nuestros caramelos clásicos son el resultado de años de perfección en el arte de la confitería. Hechos con ingredientes de la más alta calidad, cada caramelo es una explosión de sabor tradicional que te transportará a momentos nostálgicos y memorables.
                 </p>
                 <div class="product-detail-specs">
                     <div class="spec">
-                        <strong>Contenido:</strong> 250g (12 unidades)
+                        <strong>Contenido:</strong> 200g
                     </div>
                     <div class="spec">
-                        <strong>Variedades:</strong> Avellana, Trufa, Frambuesa, Menta, Caramelo
+                        <strong>Sabores:</strong> Fresa, Limón, Naranja, Frambuesa
                     </div>
                     <div class="spec">
-                        <strong>Cacao:</strong> 70% cacao belga de la más alta calidad
+                        <strong>Ingredientes:</strong> Azúcar, glucosa, mantequilla, extractos naturales
                     </div>
                 </div>
-                <div class="product-detail-price">$5.99</div>
+                <div class="product-detail-price">$2.99</div>
                 <div class="product-detail-quantity">
                     <button class="qty-btn" id="decrease">−</button>
                     <input type="number" id="quantity" value="1" min="1">
@@ -93,14 +93,6 @@
     <section class="related-products">
         <h2 class="section-title">Productos Relacionados</h2>
         <div class="products-grid">
-            <a href="product-caramelos.html" class="product-card product-link">
-                <div class="product-image">🍬</div>
-                <h3 class="product-name">Caramelos Clásicos</h3>
-                <p class="product-description">Los favoritos de siempre</p>
-                <div class="product-price">$2.99</div>
-                <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
-            </a>
-
             <a href="product-chupetines.html" class="product-card product-link">
                 <div class="product-image">🍭</div>
                 <h3 class="product-name">Chupetines Premium</h3>
@@ -109,11 +101,19 @@
                 <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
             </a>
 
-            <a href="product-tortas.html" class="product-card product-link">
-                <div class="product-image">🎂</div>
-                <h3 class="product-name">Mini Tortas</h3>
-                <p class="product-description">Perfectas para cualquier ocasión</p>
-                <div class="product-price">$7.99</div>
+            <a href="product-chocolates.html" class="product-card product-link">
+                <div class="product-image">🍫</div>
+                <h3 class="product-name">Chocolates Gourmet</h3>
+                <p class="product-description">Chocolate belga de calidad</p>
+                <div class="product-price">$5.99</div>
+                <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
+            </a>
+
+            <a href="product-donuts.html" class="product-card product-link">
+                <div class="product-image">🍩</div>
+                <h3 class="product-name">Donuts Artesanales</h3>
+                <p class="product-description">Receta tradicional mejorada</p>
+                <div class="product-price">$4.49</div>
                 <button class="product-button" onclick="event.preventDefault();">Ver Detalles</button>
             </a>
         </div>
@@ -129,7 +129,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="product-script.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/product-script.js"></script>
 </body>
 </html>
