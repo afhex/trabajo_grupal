@@ -131,29 +131,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        const decreaseBtn = document.getElementById('decrease');
-        const increaseBtn = document.getElementById('increase');
-        const quantityInput = document.getElementById('quantity');
-        const addToCartBtn = document.getElementById('add-to-cart');
-
-        decreaseBtn.addEventListener('click', () => {
-            if (parseInt(quantityInput.value) > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
-            }
-        });
-
-        increaseBtn.addEventListener('click', () => {
-            quantityInput.value = parseInt(quantityInput.value) + 1;
-        });
-
-        addToCartBtn.addEventListener('click', () => {
-            const quantity = parseInt(quantityInput.value);
-            const cartCount = parseInt(document.querySelector('.cart-count').textContent);
-            document.querySelector('.cart-count').textContent = cartCount + quantity;
-            showNotification(`¡${quantity} Flan Deluxe añadidos al carrito! 🎉`);
-            quantityInput.value = 1;
-        });
-    </script>
+    <script src="product-script.js"></script>
 </body>
 </html>

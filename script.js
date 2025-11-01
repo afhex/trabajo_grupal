@@ -1,4 +1,77 @@
 // ============================================
+// CARRITO DE COMPRAS CON LOCALSTORAGE
+// ============================================
+
+class ShoppingCart {
+    constructor() {
+        this.cart = this.loadCart();
+        this.cartCountElement = document.querySelector('.cart-count');
+        this.updateCartCount();
+    }
+
+    loadCart() {
+        const saved = localStorage.getItem('sweetverse_cart');
+        return saved ? JSON.parse(saved) : {};
+    }
+
+    saveCart() {
+        localStorage.setItem('sweetverse_cart', JSON.stringify(this.cart));
+        this.updateCartCount();
+    }
+
+    addProduct(name, price) {
+        if (this.cart[name]) {
+            this.cart[name].quantity++;
+        } else {
+            this.cart[name] = {
+                price: price,
+                quantity: 1
+            };
+        }
+        this.saveCart();
+    }
+
+    updateCartCount() {
+        let total = 0;
+        for (let product in this.cart) {
+            total += this.cart[product].quantity;
+        }
+        if (this.cartCountElement) {
+            this.cartCountElement.textContent = total;
+        }
+    }
+
+    getTotal() {
+        let total = 0;
+        for (let product in this.cart) {
+            total += this.cart[product].quantity;
+        }
+        return total;
+    }
+
+    getTotalPrice() {
+        let total = 0;
+        for (let product in this.cart) {
+            total += this.cart[product].price * this.cart[product].quantity;
+        }
+        return total;
+    }
+
+    removeProduct(name) {
+        delete this.cart[name];
+        this.saveCart();
+    }
+
+    clearCart() {
+        this.cart = {};
+        this.saveCart();
+    }
+}
+
+// Inicializar carrito global
+let shoppingCart = new ShoppingCart();
+
+// ============================================
 // FUNCIONALIDAD DE NAVEGACIÓN
 // ============================================
 
@@ -22,30 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('active');
             }
         });
-    });
-});
-
-// ============================================
-// CARRITO DE COMPRAS
-// ============================================
-
-let cartCount = 0;
-const cartCountElement = document.querySelector('.cart-count');
-
-document.querySelectorAll('.product-button').forEach(button => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault();
-        cartCount++;
-        cartCountElement.textContent = cartCount;
-        
-        // Animación del botón
-        button.style.animation = 'none';
-        setTimeout(() => {
-            button.style.animation = 'pulse 0.6s ease';
-        }, 10);
-        
-        // Notificación visual
-        showNotification('Producto añadido al carrito ✨');
     });
 });
 
@@ -77,6 +126,34 @@ function showNotification(message) {
         setTimeout(() => notification.remove(), 400);
     }, 2000);
 }
+
+// ============================================
+// BOTONES DE PRODUCTO EN ÍNDICE
+// ============================================
+
+document.querySelectorAll('.product-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Obtener el nombre y precio del producto
+        const card = button.closest('.product-card');
+        const productName = card.querySelector('.product-name').textContent;
+        const priceText = card.querySelector('.product-price').textContent;
+        const price = parseFloat(priceText.replace('$', ''));
+        
+        // Agregar al carrito
+        shoppingCart.addProduct(productName, price);
+        
+        // Animación del botón
+        button.style.animation = 'none';
+        setTimeout(() => {
+            button.style.animation = 'pulse 0.6s ease';
+        }, 10);
+        
+        // Notificación visual
+        showNotification(`${productName} añadido al carrito ✨`);
+    });
+});
 
 // ============================================
 // FORMULARIO DE CONTACTO
