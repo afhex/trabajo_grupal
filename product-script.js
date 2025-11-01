@@ -35,6 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             showNotification(`¡${quantity} ${productTitle}${quantity > 1 ? 's' : ''} añadido al carrito! 🎉`);
             quantityInput.value = 1;
+
+            // Abrir el carrito deslizable después de un pequeño delay
+            setTimeout(() => {
+                if (window.cartManager && window.cartManager.openCart) {
+                    window.cartManager.openCart();
+                }
+            }, 500);
+        });
+    }
+
+    // Agregar event listener al icono del carrito
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        cartIcon.addEventListener('click', () => {
+            if (window.cartManager) {
+                window.cartManager.openCart();
+            }
         });
     }
 });

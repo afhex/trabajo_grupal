@@ -1,0 +1,359 @@
+═════════════════════════════════════════════════════════════════════════════
+                    EJEMPLOS DE CÓDIGO - CARRITO SWEETVERSE
+═════════════════════════════════════════════════════════════════════════════
+
+EJEMPLO 1: AGREGAR PRODUCTO DESDE CUALQUIER PÁGINA
+───────────────────────────────────────────────────────────────────────────
+
+// Forma simple (funciona en index.html, products.html, etc.)
+addToCart("Nombre del Producto", 9.99);
+
+// Ejemplo completo con HTML
+<button onclick="addToCart('Caramelos Rosa', 5.99)">
+    Agregar al Carrito
+</button>
+
+// Desde JavaScript
+const btn = document.querySelector('.product-button');
+btn.addEventListener('click', () => {
+    addToCart('Chocolate Belga', 12.99);
+});
+
+
+EJEMPLO 2: ABRIR EL CARRITO DESDE JAVASCRIPT
+───────────────────────────────────────────────────────────────────────────
+
+// Abrir el carrito deslizable
+if (window.cartManager) {
+    window.cartManager.openCart();
+}
+
+// Cerrar el carrito
+if (window.cartManager) {
+    window.cartManager.closeCart();
+}
+
+// Combinar: Agregar producto y abrir carrito
+addToCart('Donuts Glaseados', 4.49);
+setTimeout(() => {
+    if (window.cartManager) {
+        window.cartManager.openCart();
+    }
+}, 300); // Pequeño delay para ver la animación
+
+
+EJEMPLO 3: VERIFICAR SI HAY PRODUCTOS EN EL CARRITO
+───────────────────────────────────────────────────────────────────────────
+
+// Obtener el carrito actual
+if (window.cartManager) {
+    const currentCart = window.cartManager.cart;
+    const itemCount = Object.keys(currentCart).length;
+    
+    if (itemCount > 0) {
+        console.log("El carrito tiene productos");
+    } else {
+        console.log("El carrito está vacío");
+    }
+}
+
+// Verificar si un producto específico existe
+if (window.cartManager) {
+    if (window.cartManager.cart['Caramelos']) {
+        console.log("Caramelos en carrito:", window.cartManager.cart['Caramelos'].quantity);
+    }
+}
+
+
+EJEMPLO 4: OBTENER EL TOTAL DEL CARRITO
+───────────────────────────────────────────────────────────────────────────
+
+// Calcular el total
+if (window.cartManager) {
+    const total = window.cartManager.calculateTotal();
+    console.log("Total del carrito: $" + total.toFixed(2));
+}
+
+// Desglose completo
+if (window.cartManager) {
+    let subtotal = 0;
+    for (let product in window.cartManager.cart) {
+        const item = window.cartManager.cart[product];
+        subtotal += item.price * item.quantity;
+    }
+    
+    const tax = subtotal * 0.12;
+    const total = subtotal + tax;
+    
+    console.log(`
+        Subtotal: $${subtotal.toFixed(2)}
+        Impuesto: $${tax.toFixed(2)}
+        Total: $${total.toFixed(2)}
+    `);
+}
+
+
+EJEMPLO 5: ESCUCHAR CAMBIOS EN EL CARRITO
+───────────────────────────────────────────────────────────────────────────
+
+// Escuchar cuando se actualiza el carrito
+window.addEventListener('cartUpdated', () => {
+    console.log("¡El carrito fue actualizado!");
+    console.log("Carrito actual:", window.cartManager.cart);
+});
+
+// Escuchar cambios desde otras pestañas
+window.addEventListener('storage', (event) => {
+    if (event.key === 'sweetverse_cart') {
+        console.log("El carrito cambió en otra pestaña");
+        console.log("Nuevos datos:", JSON.parse(event.newValue));
+    }
+});
+
+
+EJEMPLO 6: AGREGAR PRODUCTOS MÚLTIPLES A LA VEZ
+───────────────────────────────────────────────────────────────────────────
+
+// Agregar varios productos de una vez
+const products = [
+    { name: 'Caramelos', price: 5.99 },
+    { name: 'Chocolates', price: 12.99 },
+    { name: 'Donuts', price: 4.49 }
+];
+
+products.forEach(product => {
+    addToCart(product.name, product.price);
+});
+
+// Luego abrir el carrito
+if (window.cartManager) {
+    setTimeout(() => {
+        window.cartManager.openCart();
+    }, 500);
+}
+
+
+EJEMPLO 7: LIMPIAR/VACIAR EL CARRITO
+───────────────────────────────────────────────────────────────────────────
+
+// Vaciar el carrito completamente
+if (window.cartManager) {
+    window.cartManager.cart = {};
+    window.cartManager.saveCart();
+    window.cartManager.renderCart();
+}
+
+// O desde la interfaz: Click en "Proceder al Pago"
+// Esto automáticamente vacía el carrito
+
+
+EJEMPLO 8: OBTENER INFORMACIÓN DE UN PRODUCTO EN EL CARRITO
+───────────────────────────────────────────────────────────────────────────
+
+// Acceder a un producto específico
+if (window.cartManager) {
+    const productName = 'Caramelos';
+    const product = window.cartManager.cart[productName];
+    
+    if (product) {
+        console.log(`
+            Producto: ${productName}
+            Precio: $${product.price}
+            Cantidad: ${product.quantity}
+            Subtotal: $${(product.price * product.quantity).toFixed(2)}
+        `);
+    } else {
+        console.log("Producto no encontrado en el carrito");
+    }
+}
+
+
+EJEMPLO 9: ELIMINAR UN PRODUCTO ESPECÍFICO
+───────────────────────────────────────────────────────────────────────────
+
+// Eliminar un producto del carrito
+if (window.cartManager) {
+    window.cartManager.removeProduct('Caramelos');
+    console.log("Caramelos eliminados");
+}
+
+// Desde HTML (click automático en botón Eliminar)
+// El usuario hace click en "Eliminar" en el carrito
+
+
+EJEMPLO 10: ACTUALIZAR CANTIDAD DE UN PRODUCTO
+───────────────────────────────────────────────────────────────────────────
+
+// Aumentar cantidad en 1
+if (window.cartManager) {
+    window.cartManager.updateQuantity('Caramelos', 1);
+}
+
+// Disminuir cantidad en 1
+if (window.cartManager) {
+    window.cartManager.updateQuantity('Caramelos', -1);
+}
+
+// Aumentar en 5
+if (window.cartManager) {
+    for (let i = 0; i < 5; i++) {
+        window.cartManager.updateQuantity('Caramelos', 1);
+    }
+}
+
+
+EJEMPLO 11: INTEGRACIÓN CON CÓDIGO EXISTENTE
+───────────────────────────────────────────────────────────────────────────
+
+// El código existente de ShoppingCart sigue funcionando igual
+const shoppingCart = new ShoppingCart();
+
+// Agregar producto con la clase original
+shoppingCart.addProduct("Producto", 9.99);
+
+// El carrito deslizable se sincroniza automáticamente
+// No necesitas hacer nada adicional
+
+
+EJEMPLO 12: CREAR NOTIFICACIÓN PERSONALIZADA
+───────────────────────────────────────────────────────────────────────────
+
+// Función de notificación existente
+showNotification("¡Producto agregado al carrito! 🎉");
+
+// Usa HTML5 Notifications si deseas
+if (Notification.permission === "granted") {
+    new Notification("SweetVerse", {
+        body: "¡Producto agregado al carrito!",
+        icon: "https://example.com/icon.png"
+    });
+}
+
+
+EJEMPLO 13: VERIFICAR SI EL CARRITO ESTÁ ABIERTO
+───────────────────────────────────────────────────────────────────────────
+
+// Verificar el estado del sidebar
+const sidebar = document.getElementById('cartSidebar');
+
+if (sidebar && sidebar.classList.contains('active')) {
+    console.log("El carrito está abierto");
+} else {
+    console.log("El carrito está cerrado");
+}
+
+
+EJEMPLO 14: OBTENER NÚMERO TOTAL DE ITEMS EN EL CARRITO
+───────────────────────────────────────────────────────────────────────────
+
+// Contar total de items
+if (window.cartManager) {
+    let totalItems = 0;
+    for (let product in window.cartManager.cart) {
+        totalItems += window.cartManager.cart[product].quantity;
+    }
+    console.log("Total de items:", totalItems);
+}
+
+// O usar la clase original
+let totalItems = shoppingCart.getTotal();
+console.log("Total de items:", totalItems);
+
+
+EJEMPLO 15: CONFIGURACIÓN PERSONALIZADA
+───────────────────────────────────────────────────────────────────────────
+
+// Si deseas cambiar la tasa de impuesto (actualmente 12%)
+// Edita cart-script.js, método updateSummary():
+
+// ANTES:
+const tax = subtotal * 0.12;
+
+// DESPUÉS (para 16%):
+const tax = subtotal * 0.16;
+
+// O crear una variable configurable:
+const TAX_RATE = 0.12; // En la parte superior de cart-script.js
+const tax = subtotal * TAX_RATE;
+
+
+PATRONES COMUNES
+═════════════════════════════════════════════════════════════════════════════
+
+PATRÓN 1: Click en Producto → Agregar → Abrir Carrito
+──────────────────────────────────────────────────────
+
+document.querySelector('.product-btn').addEventListener('click', () => {
+    const name = document.querySelector('.product-name').textContent;
+    const price = parseFloat(
+        document.querySelector('.product-price').textContent.replace('$', '')
+    );
+    
+    addToCart(name, price);
+    
+    // Mostrar notificación
+    showNotification(`${name} agregado al carrito! ✨`);
+    
+    // Abrir carrito con pequeño delay
+    setTimeout(() => {
+        if (window.cartManager) {
+            window.cartManager.openCart();
+        }
+    }, 500);
+});
+
+
+PATRÓN 2: Validar antes de agregar
+──────────────────────────────────
+
+function agregarProductoSeguro(nombre, precio) {
+    // Validar que el nombre no sea vacío
+    if (!nombre || nombre.trim() === '') {
+        showNotification("Error: Nombre de producto inválido");
+        return false;
+    }
+    
+    // Validar que el precio sea positivo
+    if (precio <= 0) {
+        showNotification("Error: Precio inválido");
+        return false;
+    }
+    
+    // Agregar al carrito
+    addToCart(nombre, precio);
+    return true;
+}
+
+
+PATRÓN 3: Sincronizar con servidor (Futura expansión)
+────────────────────────────────────────────────────
+
+window.addEventListener('cartUpdated', async () => {
+    const cart = window.cartManager.cart;
+    
+    // Enviar al servidor
+    try {
+        const response = await fetch('/api/cart/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cart)
+        });
+        
+        console.log("Carrito sincronizado con servidor");
+    } catch (error) {
+        console.error("Error al sincronizar con servidor:", error);
+    }
+});
+
+
+═════════════════════════════════════════════════════════════════════════════
+                              NOTAS IMPORTANTES
+═════════════════════════════════════════════════════════════════════════════
+
+⚠️  Todos los ejemplos usan window.cartManager, que se crea automáticamente
+⚠️  Si estás en cart.html, CartManager se usa directamente
+⚠️  Si estás en index.html o products.html, CartManagerOnPages se usa
+⚠️  Ambos tienen interfaces similares, así que el código es compatible
+⚠️  shoppingCart (original) y cartManager (nuevo) se sincronizan automáticamente
+
+═════════════════════════════════════════════════════════════════════════════

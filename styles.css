@@ -170,19 +170,6 @@ body {
     padding: 1rem 2rem;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.logo-icon {
-    font-size: 2rem;
-    animation: pulse 2s ease-in-out infinite;
-}
-
 .logo h1 {
     background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
     -webkit-background-clip: text;
