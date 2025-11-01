@@ -1,0 +1,44 @@
+# Archivos del Sistema Operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs y Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Node (en caso de futuros cambios)
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm
+
+# Archivos de Compilación
+dist/
+build/
+*.o
+*.pyc
+
+# Logs
+logs/
+*.log
+
+# Archivos de Configuración Local
+.env.local
+.env.*.local
+
+# Información de Sensibilidad
+*.key
+*.pem
