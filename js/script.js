@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
+    
     // Detectar la ruta del script actual
     const scriptPath = document.currentScript.src;
     const isInJsFolder = scriptPath.includes('/js/');
