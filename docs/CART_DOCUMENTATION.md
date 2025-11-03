@@ -149,3 +149,31 @@ El carrito utiliza la paleta de colores de SweetVerse:
 - [ ] Sistema de cupones de descuento
 - [ ] Historial de compras
 - [ ] Carrito guardado para usuarios registrados
+- [x] Buscador de productos (✅ IMPLEMENTADO v1.1.0)
+- [ ] Filtros avanzados de búsqueda
+- [ ] Recomendaciones personalizadas
+
+## 📖 Documentación del Buscador (v1.1.0)
+
+A partir de la versión 1.1.0 (03/11/2025), se agregó un buscador de productos completo:
+
+### Características del Buscador
+- Barra de búsqueda en navbar (todas las páginas)
+- Filtrado en tiempo real mientras escribes
+- Dropdown con sugerencias de productos
+- Auto-scroll a productos cuando hay coincidencias
+- Búsqueda por Enter y click en icono
+
+### Cómo Funciona
+1. Escribe en la barra de búsqueda
+2. Ve sugerencias en tiempo real
+3. Haz click en una sugerencia para ir al producto
+4. O presiona Enter para filtrar en la página actual
+
+### Documentación Completa
+Para más información sobre el buscador, consulta:
+- RESUMEN_FINAL.txt (sección "BUSCADOR 🔍")
+- CHANGELOG.md (versión 1.1.0)
+- script.js (funciones showSuggestions y performSearch)
+
+```
