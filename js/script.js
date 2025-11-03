@@ -1,5 +1,6 @@
 // ============================================
-// CARRITO DE COMPRAS CON LOCALSTORAGE
+// 🍬 SWEETVERSE — CARRITO DE COMPRAS CON LOCALSTORAGE
+// Autor(a): Camila León | Última actualización: 03/11/2025
 // ============================================
 
 class ShoppingCart {
@@ -71,7 +72,7 @@ class ShoppingCart {
 }
 
 // Inicializar carrito global
-let shoppingCart = new ShoppingCart();
+const shoppingCart = new ShoppingCart();
 
 // ============================================
 // FUNCIONALIDAD DE NAVEGACIÓN
@@ -79,18 +80,18 @@ let shoppingCart = new ShoppingCart();
 
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     // Activar enlace de navbar según scroll
     window.addEventListener('scroll', () => {
         let current = '';
-        
+
         document.querySelectorAll('section').forEach(section => {
             const sectionTop = section.offsetTop;
             if (scrollY >= sectionTop - 200) {
                 current = section.getAttribute('id');
             }
         });
-        
+
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href').slice(1) === current) {
@@ -98,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    
+
     // Detectar la ruta del script actual
     const scriptPath = document.currentScript.src;
     const isInJsFolder = scriptPath.includes('/js/');
@@ -106,14 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cargar estilos del carrito si no están incluidos
     const cartStyleLink = document.querySelector('link[href*="cart-styles.css"]');
-    
+
     if (!cartStyleLink) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = cssPath;
         document.head.appendChild(link);
     }
-    
+
     // No inyectar cart-script.js - CartManagerOnPages ya está definido en este archivo
     // cart-script.js solo se usa en pages/cart.html que lo carga explícitamente
 
@@ -141,9 +142,9 @@ function showNotification(message) {
         z-index: 2000;
         animation: slideInDown 0.4s ease;
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
         notification.style.animation = 'slideInUp 0.4s ease';
         setTimeout(() => notification.remove(), 400);
@@ -488,22 +489,22 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('.product-button').forEach(button => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         // Obtener el nombre y precio del producto
         const card = button.closest('.product-card');
         const productName = card.querySelector('.product-name').textContent;
         const priceText = card.querySelector('.product-price').textContent;
         const price = parseFloat(priceText.replace('$', ''));
-        
+
         // Agregar al carrito
         shoppingCart.addProduct(productName, price);
-        
+
         // Animación del botón
         button.style.animation = 'none';
         setTimeout(() => {
             button.style.animation = 'pulse 0.6s ease';
         }, 10);
-        
+
         // Notificación visual
         showNotification(`${productName} añadido al carrito ✨`);
     });
@@ -517,11 +518,11 @@ const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         const name = contactForm.querySelector('input[type="text"]').value;
         const email = contactForm.querySelector('input[type="email"]').value;
         const message = contactForm.querySelector('textarea').value;
-        
+
         if (name && email && message) {
             showNotification('¡Mensaje enviado exitosamente! 🎉');
             contactForm.reset();
@@ -535,7 +536,7 @@ if (contactForm) {
 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    
+
     // Efecto parallax en hero
     const heroText = document.querySelector('.hero-text');
     if (heroText) {
@@ -552,16 +553,16 @@ document.querySelectorAll('.product-card').forEach(card => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 10;
         const rotateY = (centerX - x) / 10;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
     });
@@ -636,3 +637,4 @@ setTimeout(() => {
 }, 100);
 
 console.log('🍬 ¡Bienvenido a SweetVerse! 🍬');
+
