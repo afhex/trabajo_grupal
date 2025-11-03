@@ -78,6 +78,7 @@ Elige según lo que necesites:
 | **[IMPLEMENTATION.md](docs/IMPLEMENTATION.md)** | 20 min | Desarrolladores |
 | **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** | 15 min | Arquitectos/Senior |
 | **[CHANGELOG.md](docs/CHANGELOG.md)** | 10 min | Historial de cambios |
+| **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** | 5 min | Guía de contribución |
 
 👉 **Si es tu primera vez, comienza con [QUICK_START.md](docs/QUICK_START.md) (5 minutos)**
 
