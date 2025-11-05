@@ -93,13 +93,15 @@ development (Colaboración)
 
 ---
 
-## 🔄 Último Estado (2025-11-01)
+## 🔄 Último Estado (2025-11-03)
 
 ### Rama: `development`
 - ✅ Documentación completa
 - ✅ Guía de contribución
 - ✅ CHANGELOG actualizado
 - ✅ .gitignore configurado
+- ✅ Carrito persistente funcional
+- ✅ **BUSCADOR DE PRODUCTOS IMPLEMENTADO** ✨
 - 🚀 **LISTA PARA COLABORACIÓN**
 
 ### Rama: `main`
@@ -109,43 +111,12 @@ development (Colaboración)
 
 ---
 
-## 📋 Próximos Pasos para Colaboradores
-
-1. **Clonar el repositorio**
-   ```bash
-   git clone https://github.com/afhex/trabajo_grupal.git
-   cd trabajo_grupal
-   ```
-
-2. **Cambiar a rama development**
-   ```bash
-   git checkout development
-   ```
-
-3. **Crear tu propia rama**
-   ```bash
-   git checkout -b feature/tu-funcionalidad
-   ```
-
-4. **Hacer cambios y commit**
-   ```bash
-   git add .
-   git commit -m "Descripción de cambios"
-   ```
-
-5. **Hacer push y crear Pull Request**
-   ```bash
-   git push origin feature/tu-funcionalidad
-   ```
-
----
-
 ## 💡 Ideas para Contribuir
 
 ### 🔴 Prioridad Alta
-- Página de carrito visual
-- Sistema de filtros/búsqueda
-- Página de checkout
+- ~~Página de carrito visual~~ - ✅ REALIZADO 01 / 11 / 25
+- ~~Sistema de filtros/búsqueda~~ - ✅ REALIZADO 03 / 11 / 25
+- Página de checkout 
 
 ### 🟡 Prioridad Media
 - Mejoras en animaciones
