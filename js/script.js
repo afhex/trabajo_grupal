@@ -636,5 +636,156 @@ setTimeout(() => {
     document.body.style.opacity = '1';
 }, 100);
 
+// ============================================
+// FILTRO DE BÚSQUEDA
+// ============================================
+// FILTRO DE BÚSQUEDA CON SUGERENCIAS
+// ============================================
+
+// Base de datos de productos
+const productsDatabase = [
+    { name: 'Caramelos Clásicos', description: 'Los favoritos de siempre', price: '$2.99', icon: '🍬', url: 'pages/products/product-caramelos.html' },
+    { name: 'Chupetines Premium', description: 'Sabores exóticos y únicos', price: '$3.99', icon: '🍭', url: 'pages/products/product-chupetines.html' },
+    { name: 'Chocolates Gourmet', description: 'Chocolate belga de calidad', price: '$5.99', icon: '🍫', url: 'pages/products/product-chocolates.html' },
+    { name: 'Donuts Artesanales', description: 'Receta tradicional mejorada', price: '$4.49', icon: '🍩', url: 'pages/products/product-donuts.html' },
+    { name: 'Flan Deluxe', description: 'Postre cremoso irresistible', price: '$6.99', icon: '🍮', url: 'pages/products/product-flan.html' },
+    { name: 'Mini Tortas', description: 'Perfectas para cualquier ocasión', price: '$7.99', icon: '🎂', url: 'pages/products/product-tortas.html' }
+];
+
+const searchInput = document.getElementById('searchInput');
+const searchIcon = document.querySelector('.search-icon');
+const searchSuggestions = document.getElementById('searchSuggestions');
+
+// Función para mostrar sugerencias
+function showSuggestions(searchTerm) {
+    if (searchTerm.trim() === '') {
+        searchSuggestions.classList.remove('show');
+        return;
+    }
+
+    const filteredProducts = productsDatabase.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    if (filteredProducts.length === 0) {
+        searchSuggestions.innerHTML = '<div class="search-suggestion-item">Sin resultados</div>';
+    } else {
+        searchSuggestions.innerHTML = filteredProducts.map(product => `
+            <div class="search-suggestion-item" data-url="${product.url}">
+                <span class="search-suggestion-icon">${product.icon}</span>
+                <span class="search-suggestion-name">${product.name}</span>
+                <span class="search-suggestion-price">${product.price}</span>
+            </div>
+        `).join('');
+
+        // Agregar listeners a los items
+        document.querySelectorAll('.search-suggestion-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const url = item.dataset.url;
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+    }
+
+    searchSuggestions.classList.add('show');
+}
+
+function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const productCards = document.querySelectorAll('.product-card');
+    let visibleCount = 0;
+    
+    console.log(`🔍 Buscando: "${searchTerm}"`);
+    
+    productCards.forEach(card => {
+        const productName = card.querySelector('.product-name')?.textContent.toLowerCase() || '';
+        const productDescription = card.querySelector('.product-description')?.textContent.toLowerCase() || '';
+        const productPrice = card.querySelector('.product-price')?.textContent.toLowerCase() || '';
+        
+        // Mostrar si el término está vacío o coincide con nombre, descripción o precio
+        const matches = searchTerm === '' || 
+                      productName.includes(searchTerm) || 
+                      productDescription.includes(searchTerm) || 
+                      productPrice.includes(searchTerm);
+        
+        if (matches) {
+            card.style.display = '';  // Restaurar display original
+            card.style.opacity = '1';
+            card.style.pointerEvents = 'auto';
+            card.style.filter = 'brightness(1)';
+            visibleCount++;
+            console.log(`✅ Mostrando: ${productName}`);
+        } else {
+            card.style.display = 'none';  // Ocultar completamente
+            console.log(`❌ Ocultando: ${productName}`);
+        }
+    });
+    
+    console.log(`📊 Resultados encontrados: ${visibleCount} de ${productCards.length}`);
+    
+    // Hacer scroll a la sección de productos si hay búsqueda
+    if (searchTerm !== '' && visibleCount > 0) {
+        setTimeout(() => {
+            // Buscar sección de productos, productos relacionados o carrito
+            let targetSection = document.querySelector('.products') || 
+                              document.querySelector('.related-products') ||
+                              document.querySelector('#cartSidebar');
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                console.log('📍 Scroll a productos');
+            }
+        }, 300);
+    }
+}
+
+if (searchInput) {
+    // Mostrar sugerencias mientras escribes
+    searchInput.addEventListener('input', (e) => {
+        showSuggestions(e.target.value);
+        performSearch();
+    });
+    
+    // Búsqueda al presionar Enter
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+            searchSuggestions.classList.remove('show');
+            console.log('🔎 Búsqueda por Enter');
+        }
+    });
+    
+    // Limpiar búsqueda cuando se enfoca
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value === '') {
+            searchSuggestions.classList.remove('show');
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = '';
+                card.style.opacity = '1';
+                card.style.pointerEvents = 'auto';
+            });
+        }
+    });
+    
+    // Cerrar sugerencias al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+            searchSuggestions.classList.remove('show');
+        }
+    });
+}
+
+// Click en el ícono de búsqueda
+if (searchIcon) {
+    searchIcon.addEventListener('click', () => {
+        performSearch();
+        console.log('🔎 Búsqueda por ícono');
+        searchInput?.focus();
+    });
+}
+
 console.log('🍬 ¡Bienvenido a SweetVerse! 🍬');
 

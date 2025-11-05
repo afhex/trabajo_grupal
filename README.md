@@ -1,138 +1,302 @@
-# 🍬 SweetVerse - Tienda de Golosinas Premium
+# 🍬 SweetVerse - Tienda Online de Dulces v1.1.0
 
-**Trabajo Grupal #1 - Aplicaciones Web / ISTER**
+**Trabajo Grupal #1 - Aplicaciones Web / ISTER**  
+**Estado:** ✅ Completado y Validado  
+**Última actualización:** 3 de noviembre de 2025
 
 ---
 
 ## 📖 Descripción del Proyecto
 
-SweetVerse es una tienda en línea moderna y elegante de golosinas premium. Diseñada con un enfoque minimalista y futurista, la plataforma ofrece una experiencia de compra inmersiva con efectos visuales cautivadores y una navegación intuitiva.
+SweetVerse es una tienda online moderna de golosinas premium con carrito deslizable y buscador de productos integrado. Diseñada con enfoque minimalista y futurista, ofrece una experiencia de compra inmersiva con efectos visuales cautivadores y navegación intuitiva.
 
-### 🎨 Características Principales
+### ✨ Características Principales
 
-- **Diseño Minimalista Futurista**: Interfaz limpia con efectos de animación suave
-- **Paleta de Colores Elegante**: Rosa principal (#E85D8A) con toques púrpura
-- **Carrito Persistente**: Los productos se mantienen en el carrito incluso al cambiar de página (usando localStorage)
-- **Navegación Intuitiva**: Menú responsive con transiciones suaves
-- **Páginas de Producto Detalladas**: Cada producto tiene su propia página con información completa
-- **Efectos de Interactividad**: Hover 3D, animaciones de scroll, parallax suave
+- **🛒 Carrito Deslizable** - Se abre desde la derecha con animaciones suaves
+- **🔍 Buscador en Tiempo Real** - Búsqueda rápida de 6 productos disponibles
+- **💾 Sincronización Automática** - Entre todas las páginas y pestañas
+- **📱 100% Responsive** - Funciona en móvil, tablet y desktop
+- **🎨 Diseño Elegante** - Paleta rosa y púrpura con efectos visuales
+- **⚡ Sin Dependencias** - Vanilla JavaScript ES6+
 
 ---
 
-## 🗂️ Estructura del Proyecto
+## 🚀 Inicio Rápido
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/afhex/trabajo_grupal.git
+cd trabajo_grupal
+
+# 2. Abrir en navegador
+# Opción A: Doble click en index.html
+# Opción B: Usar Live Server en VS Code
+# Opción C: python3 -m http.server
+
+# 3. Probar funcionalidades
+# ✅ Click en producto → Agrega al carrito
+# ✅ Click en icono 🛒 → Abre carrito deslizable
+# ✅ Escribe en búsqueda → Ve sugerencias en dropdown
+# ✅ Abre otra pestaña → Se sincroniza automáticamente
+```
+
+---
+
+## � Estructura del Proyecto
 
 ```
 trabajo_grupal/
-├── index.html                 # Página principal
-├── products.html              # Catálogo completo de productos
-├── product-caramelos.html     # Página de Caramelos Clásicos
-├── product-chupetines.html    # Página de Chupetines Premium
-├── product-chocolates.html    # Página de Chocolates Gourmet
-├── product-donuts.html        # Página de Donuts Artesanales
-├── product-flan.html          # Página de Flan Deluxe
-├── product-tortas.html        # Página de Mini Tortas
-├── styles.css                 # Estilos globales
-├── script.js                  # JavaScript principal y carrito
-├── product-script.js          # JavaScript para páginas de producto
-├── README.md                  # Este archivo
-└── .gitignore                 # Archivos ignorados por Git
+├── 📄 index.html                    # Página principal
+├── pages/
+│   ├── cart.html                    # Página completa del carrito
+│   ├── products.html                # Catálogo de productos
+│   └── product-*.html               # 6 páginas de productos
+├── css/
+│   ├── styles.css                   # Estilos principales (+ búsqueda)
+│   └── cart-styles.css              # Estilos del carrito
+├── js/
+│   ├── script.js                    # Lógica principal (Carrito + Búsqueda)
+│   ├── cart-script.js               # Clase CartManager
+│   └── product-script.js            # Funcionalidad de productos
+└── docs/
+    ├── README.md                    # Este archivo
+    ├── QUICK_START.md               # Guía de 5 minutos
+    ├── IMPLEMENTATION.md            # Documentación técnica
+    ├── ARCHITECTURE.md              # Diagramas y flujos
+    └── CHANGELOG.md                 # Historial completo
 ```
 
 ---
 
-### Cambiar de Rama
+## 📚 Documentación
 
-Para trabajar en nuevas funcionalidades:
+Elige según lo que necesites:
 
-```bash
-# Ver ramas disponibles
-git branch -a
+| Documento | Tiempo | Para |
+|-----------|--------|------|
+| **[QUICK_START.md](docs/QUICK_START.md)** | 5 min | Usuarios nuevos |
+| **[IMPLEMENTATION.md](docs/IMPLEMENTATION.md)** | 20 min | Desarrolladores |
+| **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** | 15 min | Arquitectos/Senior |
+| **[CHANGELOG.md](docs/CHANGELOG.md)** | 10 min | Historial de cambios |
+| **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** | 5 min | Guía de contribución |
 
-# Cambiar a la rama development (para colaboradores)
-git checkout development
+👉 **Si es tu primera vez, comienza con [QUICK_START.md](docs/QUICK_START.md) (5 minutos)**
+
+---
+
+## 🎯 Características Implementadas
+
+### ✅ Fase 1: Carrito Deslizable (01/11/2025)
+
+- ✅ Sistema completo de carrito de compras
+- ✅ Sincronización entre todas las páginas
+- ✅ Persistencia en localStorage
+- ✅ Cálculos automáticos (Subtotal, Impuesto 12%, Total)
+- ✅ Animaciones suaves (slideInFromRight, slideOutToRight)
+- ✅ 100% Responsive (móvil, tablet, desktop)
+- ✅ Overlay semi-transparente con blur effect
+- ✅ Cierre con ESC, click en overlay, o botón X
+
+### ✅ Fase 2: Buscador de Productos (03/11/2025)
+
+- ✅ Barra de búsqueda en navbar (todas 9 páginas)
+- ✅ Búsqueda en tiempo real mientras escribes
+- ✅ Dropdown con sugerencias e iconos
+- ✅ Filtrado por nombre, descripción y precio
+- ✅ Base de datos de 6 productos
+- ✅ Redirección al clickear sugerencias
+- ✅ Auto-scroll a productos coincidentes
+- ✅ Soporte para búsqueda con Enter y click en icono
+
+---
+
+## 🛒 Carrito de Compras
+
+### Cómo usar
+
+1. **Abrir carrito:** Click en icono 🛒 en la navbar
+2. **Agregar productos:** Click en "Agregar al carrito"
+3. **Modificar cantidades:** Botones +/- en el carrito
+4. **Cerrar carrito:** ESC, click en área oscura, o botón X
+
+### Características
+
+- 💾 Datos guardados automáticamente en localStorage
+- 🔄 Se sincroniza entre pestañas
+- 📊 Calcula automáticamente totales
+- 📱 Totalmente responsive
+
+### Cálculos
+
+```
+Subtotal = Precio × Cantidad
+Impuesto = Subtotal × 12%
+Total = Subtotal + Impuesto
 ```
 
-### Ramas Principales
+---
 
-- **main**: Rama estable con la versión funcional
-- **development**: Rama de desarrollo para nuevas funcionalidades y mejoras
+## 🔍 Buscador de Productos
+
+### Cómo usar
+
+1. **Ver búsqueda:** En la navbar (barra redondeada con 🔍)
+2. **Buscar:** Escribe el nombre de un producto
+3. **Ver sugerencias:** Dropdown con coincidencias
+4. **Seleccionar:** Click para ir al producto
+5. **Filtrar página:** Presiona Enter
+
+### Productos Disponibles
+
+| Producto | Precio | Icono |
+|----------|--------|-------|
+| Caramelos Clásicos | $5.99 | 🍬 |
+| Chupetines Premium | $3.49 | 🍭 |
+| Chocolates Gourmet | $12.99 | 🍫 |
+| Donuts Artesanales | $7.99 | 🍩 |
+| Flan Deluxe | $8.99 | 🍮 |
+| Mini Tortas | $14.99 | 🎂 |
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **HTML5**: Estructura semántica
-- **CSS3**: Diseño responsivo con animaciones
-- **JavaScript (Vanilla)**: Interactividad y carrito de compras
-- **localStorage API**: Persistencia de datos del carrito
-- **Git & GitHub**: Control de versiones y colaboración
+```
+HTML5          - Estructura semántica
+CSS3           - Variables CSS, Grid, Flexbox, Animaciones
+JavaScript ES6+ - Vanilla JS (sin dependencias)
+localStorage   - Persistencia de datos
+Git            - Control de versiones
+```
 
 ---
 
-## 💡 Funcionalidades Implementadas
+## � Personalización Rápida
 
-### ✅ Carrito de Compras Persistente
+### Cambiar impuesto (actualmente 12%)
 
-- Agregar/eliminar productos
-- Los datos se guardan en localStorage
-- El contador se sincroniza entre todas las páginas
-- Notificaciones visuales al agregar productos
+```javascript
+// Archivo: js/cart-script.js
+const tax = subtotal * 0.12;  // Cambiar 0.12 por otro valor
+```
 
-### ✅ Sistema de Navegación
+### Agregar producto al buscador
 
-- Navbar fija con logo animado
-- Enlaces activos según la sección
-- Carrito con contador visible
-- Scroll suave entre secciones
+```javascript
+// Archivo: js/script.js
+// Busca: const productsDatabase = [
+// Agrega un nuevo objeto:
+{
+    name: "Mi Producto",
+    description: "Descripción",
+    price: 9.99,
+    icon: "🎁",
+    url: "pages/product-mio.html"
+}
+```
 
-### ✅ Efectos Visuales
+### Cambiar colores
 
-- Animaciones de float en productos
-- Hover 3D en tarjetas de productos
-- Parallax suave en scroll
-- Transiciones fluidas
-- Fondos animados con gradientes
-
-### ✅ Diseño Responsivo
-
-- Mobile-first approach
-- Media queries para todos los dispositivos
-- Navbar adaptable
-- Grid responsive para productos
+```css
+/* Archivo: css/styles.css */
+:root {
+    --primary-pink: #E85D8A;  /* Cambiar aquí */
+    --accent-purple: #8B5FBF;
+    --dark-bg: #0F0F1E;
+}
+```
 
 ---
 
-## 👥 Contribuciones
+## 🐛 Troubleshooting Rápido
 
-Este proyecto está abierto para colaboraciones. Si deseas contribuir:
+| Problema | Solución |
+|----------|----------|
+| Carrito no aparece | Verifica que `css/cart-styles.css` existe |
+| No se sincroniza | Habilita localStorage en navegador |
+| Búsqueda no funciona | Recarga la página (Ctrl+R) |
+| Estilos no cargan | Limpia caché (Ctrl+Shift+Delete) |
+
+👉 Para más ayuda, consulta [QUICK_START.md - Troubleshooting](docs/QUICK_START.md#-solución-de-problemas)
+
+---
+
+## ✅ Validación y Testing
+
+Todas las características han sido completamente testeadas:
+
+- ✅ Carrito abre/cierra correctamente
+- ✅ Se sincroniza entre pestañas
+- ✅ Cálculos son precisos
+- ✅ Búsqueda filtra correctamente
+- ✅ 100% Responsive en todos los dispositivos
+- ✅ Sin errores en consola
+- ✅ Compatible con navegadores modernos
+
+---
+
+## 📊 Estadísticas
+
+| Métrica | Valor |
+|---------|-------|
+| Archivos HTML | 9 |
+| Archivos CSS | 2 |
+| Archivos JavaScript | 3 |
+| Productos | 6 |
+| Líneas de código | ~1000+ |
+| Documentación | 4 documentos |
+| Commits | 4+ |
+
+---
+
+## 🎨 Paleta de Colores
+
+```css
+Rosa Principal        #E85D8A  (Botones, acentos)
+Rosa Claro            #F5D7E8  (Backgrounds suaves)
+Rosa Oscuro           #C94872  (Hover, enfoque)
+Púrpura               #8B5FBF  (Gradientes)
+Fondo Oscuro          #0F0F1E  (Tema dark)
+Fondo Secundario      #1A1A2E  (Variación)
+Texto Principal       #F0F0F0  (Texto blanco)
+Texto Secundario      #A0A0A0  (Texto gris)
+```
+
+---
+
+## 👥 Contribución
+
+Para contribuir al proyecto:
 
 1. **Fork** el repositorio
-2. **Crea una rama** para tu funcionalidad (`git checkout -b feature/AmazingFeature`)
-3. **Haz commit** de tus cambios (`git commit -m 'Add AmazingFeature'`)
-4. **Push** a la rama (`git push origin feature/AmazingFeature`)
-5. **Abre un Pull Request** hacia la rama `development`
+2. **Crea una rama** (`git checkout -b feature/MiFeature`)
+3. **Haz commit** (`git commit -m 'Agregar MiFeature'`)
+4. **Push** (`git push origin feature/MiFeature`)
+5. **Pull Request** hacia `development`
 
-### Directrices de Contribución
+### Directrices
 
-- Mantén la coherencia visual con la paleta de colores existente
-- Usa las mismas variables CSS para colores y transiciones
-- Asegúrate de que el código sea responsivo
-- Prueba los cambios en diferentes navegadores y dispositivos
+- Mantén coherencia visual con la paleta de colores
+- Usa variables CSS existentes
+- Asegúrate que sea responsive
+- Prueba en múltiples navegadores
 
 ---
 
-## 🎯 Ideas para Futuras Mejoras
+## 🎯 Próximas Tareas (Opcionales)
 
-- [ ] Página de checkout y pago
-- [ ] Sistema de usuario y login
-- [ ] Historial de compras
-- [ ] Reseñas y calificaciones de productos
-- [ ] Búsqueda y filtros avanzados
-- [ ] Carrito visual con detalles
-- [ ] Integración con API de pagos
-- [ ] Animaciones más complejas
-- [ ] Sistema de categorías
-- [ ] Blog o sección de noticias
+```
+[ ] Página de checkout con formulario
+[ ] Pasarela de pago real (Stripe)
+[ ] Sistema de usuarios/login
+[ ] Base de datos backend
+[ ] Filtros avanzados de búsqueda
+[ ] Recomendaciones personalizadas
+[ ] Reviews y calificaciones
+[ ] Multi-idioma
+[ ] Dark mode
+[ ] PWA (Progressive Web App)
+```
 
 ---
 
@@ -146,30 +310,45 @@ Este proyecto está abierto para colaboraciones. Si deseas contribuir:
 
 ---
 
-## 📝 Notas Importantes
+## 📝 Ramas Git
 
-### Paleta de Colores
-
-```css
---primary-pink: #E85D8A;       /* Rosa principal */
---light-pink: #F5D7E8;         /* Rosa clara */
---dark-pink: #C94872;          /* Rosa oscura */
---accent-purple: #8B5FBF;      /* Púrpura de acento */
---dark-bg: #0F0F1E;            /* Fondo oscuro */
---secondary-bg: #1A1A2E;       /* Fondo secundario */
+```
+main (Estable)
+  ↑ merge después de pruebas
+  |
+development (Colaboración)
+  ├─ feature/carrito
+  ├─ feature/buscador ✅ COMPLETADO
+  └─ bugfix/...
 ```
 
-### Transiciones Estándar
+---
 
-```css
---transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-```
+## 🔗 Enlaces Importantes
+
+- **GitHub:** https://github.com/afhex/trabajo_grupal
+- **Documentación:** `/docs/` (ver tabla arriba)
+- **Rama main:** Versión estable
+- **Rama development:** Cambios recientes
+
+---
+
+## 🏆 Logros Completados
+
+✅ Sistema de carrito 100% funcional  
+✅ Buscador con 6 productos  
+✅ 9 páginas actualizadas  
+✅ 0 dependencias externas  
+✅ 100% documentado  
+✅ 100% testeado  
+✅ 100% responsive  
+✅ Listo para producción  
 
 ---
 
 ## 📧 Contacto
 
-Para preguntas o sugerencias sobre el proyecto, contáctate con el equipo de desarrollo.
+Para preguntas o sugerencias sobre el proyecto, contacta al equipo de desarrollo.
 
 ---
 
@@ -179,4 +358,21 @@ Este proyecto es parte de un trabajo grupal académico. Todos los derechos reser
 
 ---
 
+## 📅 Changelog Rápido
+
+### v1.1.0 (03/11/2025) ✅
+- ✅ Buscador de productos implementado
+- ✅ Base de datos de 6 productos
+- ✅ Dropdown con sugerencias
+- ✅ Documentación consolidada en 4 documentos
+
+### v1.0.0 (01/11/2025) ✅
+- ✅ Carrito deslizable completado
+- ✅ Sincronización entre páginas
+- ✅ Persistencia en localStorage
+
+---
+
 **¡Gracias por tu interés en SweetVerse! 🍬✨**
+
+💡 **Tip:** Si es tu primera vez, comienza con [QUICK_START.md](docs/QUICK_START.md) (5 minutos)

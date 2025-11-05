@@ -8,11 +8,33 @@ y este proyecto se adhiere a [Semantic Versioning](https://semver.org/es/).
 ---
 ## [Unreleased]
 
-### 🐛 Corregido
-- **Cart Functionality**: Agregar `js/script.js` a `pages/cart.html` para inicializar `ShoppingCart` antes que `CartManager`
-  - Permite actualización correcta del contador en la navegación
-  - Habilita listeners del carrito en `pages/cart.html`
-  - Previene duplicación de instancias al verificar existencia de elementos
+---
+
+## [1.1.0] - 2025-11-03
+
+### ✨ Agregado
+
+#### Buscador de Productos
+- ✅ Barra de búsqueda en navbar (todas 9 páginas)
+- ✅ Filtrado en tiempo real por nombre, descripción y precio
+- ✅ Dropdown con sugerencias de productos
+- ✅ Iconos de productos en sugerencias
+- ✅ Redirección al clickear sugerencias
+- ✅ Auto-scroll a sección de productos cuando hay coincidencias
+- ✅ Soporte para búsqueda con Enter y click en icono
+- ✅ Integración visual con diseño SweetVerse
+
+### 🎨 Mejorado
+- Variable CSS `--search-radius: 50px` para consistencia de diseño
+- Dropdown con bordes redondeados uniformes (50px)
+- Estilos responsive para móviles
+
+### 🔧 Técnico
+- Base de datos de productos en JavaScript
+- Función `performSearch()` mejorada
+- Función `showSuggestions()` implementada
+- Event listeners para múltiples interacciones
+- Debugging con console logs
 
 ---
 
